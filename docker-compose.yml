@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  redis-server:
+    container_name: redis
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    hostname: localhost
+    ports:
+    - "6379:6379"
+  java-service:
+    build: .
+    links:
+      - redis-server
+    ports:
+      - "8080:8080"
